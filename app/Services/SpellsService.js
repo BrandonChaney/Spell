@@ -31,8 +31,8 @@ class SpellsService {
       .then(res => {
         console.log(res);
 
-        let spellNames = res.data.map(r => r.name)
-        store.commit("apiSpells", spellNames)
+        //let spellNames = res.data.map(r => r.name)
+        store.commit("apiSpells", res.data)
       })
       .catch(e => console.error(e))
   }
@@ -58,11 +58,14 @@ class SpellsService {
   }
 
   //Post
-  learn() {
-    _sandboxApi.post("", store.State.activeSpell)
+  learn(_id) {
+
+    _sandboxApi.post(_id, store.State.activeSpell)
       .then(res => {
         this.getMySpells();
+
       })
+
       .catch(e => console.error(e))
   }
 

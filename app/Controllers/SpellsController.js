@@ -5,16 +5,19 @@ import store from "../store.js";
 function _drawApiSpells() {
   let spells = store.State.apiSpells;
   let template = ''
-  spells.forEach(name => {
-    template += `<li class="action" onclick="app.spellsController.getSpellDetails('${name}')">${name}</li>`
+  console.log(spells);
+
+  spells.forEach(spell => {
+    template += `<li class="action" onclick="app.spellsController.getSpellDetails('${spell.id}')">${spell.name}</li>`
   });
   document.getElementById('api-spells').innerHTML = template;
 }
 
 function _drawActiveSpell() {
-  let spells = store.State.activeSpells
-  if (spells) {
-    document.getElementById("active-spells").innerHTML = spells.Template
+  let spell = store.State.activeSpell
+  console.log(spell.id)
+  if (spell) {
+    document.getElementById("active-spells").innerHTML = spell.Template
   } else {
     document.getElementById("active-spells").innerHTML = ""
   }
@@ -43,8 +46,8 @@ export default class SpellsController {
 
   }
 
-  learn() {
-    SpellsService.learn()
+  learn(_id) {
+    SpellsService.learn(_id)
   }
 
   delete() {
