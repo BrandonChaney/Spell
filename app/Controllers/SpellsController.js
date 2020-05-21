@@ -6,7 +6,7 @@ function _drawApiSpells() {
   let spells = store.State.apiSpells;
   let template = ''
   spells.forEach(name => {
-    template += `<li class="action" onclick="app.spellsController.getSpellDetails('${this.id}')">${name}</li>`
+    template += `<li class="action" onclick="app.spellsController.getSpellDetails('${name}')">${name}</li>`
   });
   document.getElementById('api-spells').innerHTML = template;
 }
@@ -37,9 +37,9 @@ export default class SpellsController {
     store.subscribe("activeSpell", _drawActiveSpell)
   }
 
-  getSpellDetails(id) {
-    SpellsService.getSpellDetails(id);
-    console.log(id);
+  getSpellDetails(name) {
+    SpellsService.getSpellDetails(name);
+    console.log();
 
   }
 
@@ -51,7 +51,7 @@ export default class SpellsController {
     SpellsService.delete()
   }
 
-  setActiveSpell(id) {
-    SpellsService.setActiveSpell(id)
+  setActiveSpell(name) {
+    SpellsService.setActiveSpell(name)
   }
 }
