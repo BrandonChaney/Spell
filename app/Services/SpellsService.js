@@ -36,10 +36,10 @@ class SpellsService {
       })
       .catch(e => console.error(e))
   }
-  getSpellDetails(name) {
-    console.log(name);
+  getSpellDetails(id) {
+    console.log(id);
 
-    _spellsApi.get(name)
+    _spellsApi.get(id)
       .then(res => {
         console.log(res);
 
